@@ -9,9 +9,9 @@ namespace QueueStore1
         {
             int score = 0;
             int clientNumber = 1;
-            int numberBuyers = NumberBuyers();
+            int numberBuyers = GetBuyers();
 
-            Queue<int> clients = QueueStore(numberBuyers);
+            Queue<int> clients = GetQueue(numberBuyers);
 
             while (clients.Count > 0)
             {
@@ -24,7 +24,7 @@ namespace QueueStore1
                 }
                 else
                 {
-                    Console.WriteLine($"клиен [{clientNumber++}] купил [{Products()}] на сумму [{purchaseAmount}] руб.");
+                    Console.WriteLine($"клиен [{clientNumber++}] купил [{GetProducts()}] на сумму [{purchaseAmount}] руб.");
                     Console.WriteLine($"\nна счёте - [{score}] рублей.");
                 }
 
@@ -33,7 +33,7 @@ namespace QueueStore1
             }
         }
 
-        private static string Products()
+        private static string GetProducts()
         {
             string[] products = new string[] { "телефон", "фотоаппарат", "ноутбук" };
 
@@ -48,7 +48,7 @@ namespace QueueStore1
             return products[result];
         }
 
-        private static int NumberBuyers()
+        private static int GetBuyers()
         {
             Console.WriteLine("Введите количество покупателей в очереди: ");
             string userInput = Console.ReadLine();
@@ -58,9 +58,9 @@ namespace QueueStore1
             return number;
         }
 
-        private static Queue<int> QueueStore(int numberBuyers)
+        private static Queue<int> GetQueue(int numberBuyers)
         {
-            Queue<int> client = new Queue<int>();
+            Queue<int> clients = new Queue<int>();
             Random random = new Random();
 
             int minValue = 100;
@@ -68,10 +68,10 @@ namespace QueueStore1
 
             for (int i = 0; i < numberBuyers; i++)
             {
-                client.Enqueue(random.Next(minValue, maxValue));
+                clients.Enqueue(random.Next(minValue, maxValue));
             }
 
-            return client;
+            return clients;
         }
     }
 }
