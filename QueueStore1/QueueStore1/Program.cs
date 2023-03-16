@@ -9,7 +9,7 @@ namespace QueueStore1
         {
             int score = 0;
             int clientNumber = 1;
-            int numberBuyers = GetBuyers();
+            int numberBuyers = GetBuyersAmount();
 
             Queue<int> clients = GetQueue(numberBuyers);
 
@@ -24,7 +24,7 @@ namespace QueueStore1
                 }
                 else
                 {
-                    Console.WriteLine($"клиен [{clientNumber++}] купил [{GetProducts()}] на сумму [{purchaseAmount}] руб.");
+                    Console.WriteLine($"клиен [{clientNumber++}] купил [{GetProduct()}] на сумму [{purchaseAmount}] руб.");
                     Console.WriteLine($"\nна счёте - [{score}] рублей.");
                 }
 
@@ -33,7 +33,7 @@ namespace QueueStore1
             }
         }
 
-        private static string GetProducts()
+        private static string GetProduct()
         {
             string[] products = new string[] { "телефон", "фотоаппарат", "ноутбук" };
 
@@ -48,7 +48,7 @@ namespace QueueStore1
             return products[result];
         }
 
-        private static int GetBuyers()
+        private static int GetBuyersAmount()
         {
             Console.WriteLine("Введите количество покупателей в очереди: ");
             string userInput = Console.ReadLine();
