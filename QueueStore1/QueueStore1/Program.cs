@@ -18,14 +18,12 @@ namespace QueueStore1
                 int purchaseAmount = clients.Dequeue();
                 score += purchaseAmount;
 
+                Console.WriteLine($"клиен [{clientNumber++}] купил [{GetProduct()}] на сумму [{purchaseAmount}] руб.");
+                Console.WriteLine($"\nна счёте - [{score}] рублей.");
+
                 if (clients.Count == 0)
                 {
                     Console.WriteLine("Товар продан!!!");
-                }
-                else
-                {
-                    Console.WriteLine($"клиен [{clientNumber++}] купил [{GetProduct()}] на сумму [{purchaseAmount}] руб.");
-                    Console.WriteLine($"\nна счёте - [{score}] рублей.");
                 }
 
                 Console.ReadKey();
@@ -50,10 +48,27 @@ namespace QueueStore1
 
         private static int GetBuyersAmount()
         {
-            Console.WriteLine("Введите количество покупателей в очереди: ");
-            string userInput = Console.ReadLine();
+            int number = 0;
 
-            int.TryParse(userInput, out int number);
+            bool isWork = true;
+
+            while (isWork)
+            {
+                Console.WriteLine("Введите количество покупателей в очереди: ");
+
+                string userInput = Console.ReadLine();
+                int.TryParse(userInput, out number);
+
+                if (number <= 0)
+                {
+                    Console.WriteLine("Ошибка!!!");
+                }
+                else
+                {
+                    isWork = false;
+                    Console.Clear();
+                }  
+            }
 
             return number;
         }
